@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-19T12:50:12.719Z",
+  "updated_at": "2026-10-19T12:50:14.266Z",
   "items": {
     "bazos:225195009": {
       "flag": "skip",
@@ -43,8 +43,8 @@
       "id": "bmvf950rujv7a",
       "name": "Sada 1",
       "uids": [],
-      "at": "2026-10-19T12:50:11.515Z",
-      "deleted": false
+      "at": "2026-10-19T12:50:13.062Z",
+      "deleted": true
     }
   },
   "bike": {
