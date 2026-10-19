@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-19T12:20:00.746Z",
+  "updated_at": "2026-10-19T12:20:02.904Z",
   "items": {
     "bazos:225195009": {
       "flag": "skip",
@@ -12,6 +12,10 @@
     "cyklobazar:pODe1MXeoORjw": {
       "flag": "skip",
       "at": "2026-10-19T12:19:59.544Z"
+    },
+    "bazos:225122983": {
+      "flag": "skip",
+      "at": "2026-10-19T12:20:01.702Z"
     }
   }
 }
