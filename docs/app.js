@@ -18,8 +18,13 @@ var LS_STATE = 'sada.state.v1';
 var LS_TOKEN = 'sada.token.v1';
 var SITE_LABELS = { bazos: 'Bazoš', cyklobazar: 'Cyklobazar' };
 
-var data = { items: [], categories: [], total_budget: null };
-var state = {};
+// Parametry kola, které stránka nechá doplnit ručně - ve specifikaci
+// výrobce nejsou a rozhodují o tom, co se na kolo vejde.
+var BIKE_FIELDS = ['freehub', 'bb_shell', 'fd_mount', 'frame_size'];
+var MAX_NAME = 60;
+
+var data = { items: [], categories: [], total_budget: null, bike: {} };
+var state = emptyState();
 var stateSha = null;
 var pushTimer = null;
 
@@ -67,15 +72,66 @@ function b64decode(text) {
   return new TextDecoder().decode(bytes);
 }
 
-/* ---------- stav ---------- */
+/* ---------- stav ----------
+ *
+ * Tvar: { items: {uid: {flag, at}}, builds: {id: {...}}, bike: {values, at} }
+ * Všechno nese časovou značku, aby se dvě zařízení dala sloučit bez ztráty.
+ */
+
+function emptyState() {
+  return { items: {}, builds: {}, bike: { values: {}, at: '' } };
+}
+
+function now() { return new Date().toISOString(); }
+
+/** Očistí stav z cizího zdroje (soubor, API, starší verze stránky). */
+function normalizeState(raw) {
+  if (!raw || typeof raw !== 'object') { return emptyState(); }
+  // Původní tvar byl rovnou mapa uid -> {flag, at}, bez sad a kola.
+  var items = raw.items && typeof raw.items === 'object' ? raw.items : raw;
+  var bike = raw.bike && typeof raw.bike === 'object' ? raw.bike : {};
+  var values = bike.values && typeof bike.values === 'object' ? bike.values : {};
+
+  var cleanItems = {};
+  Object.keys(items).forEach(function (uid) {
+    var entry = items[uid];
+    if (!entry || typeof entry !== 'object') { return; }
+    if (['like', 'skip', 'none'].indexOf(entry.flag) === -1) { return; }
+    cleanItems[uid] = { flag: entry.flag, at: String(entry.at || '') };
+  });
+
+  var cleanBuilds = {};
+  var builds = raw.builds && typeof raw.builds === 'object' ? raw.builds : {};
+  Object.keys(builds).forEach(function (id) {
+    var build = builds[id];
+    if (!build || typeof build !== 'object') { return; }
+    cleanBuilds[id] = {
+      id: id,
+      name: String(build.name || '').slice(0, MAX_NAME),
+      uids: Array.isArray(build.uids) ? build.uids.map(String) : [],
+      at: String(build.at || ''),
+      deleted: !!build.deleted
+    };
+  });
+
+  var cleanValues = {};
+  BIKE_FIELDS.forEach(function (field) {
+    if (values[field]) { cleanValues[field] = String(values[field]).slice(0, 20); }
+  });
+
+  return {
+    items: cleanItems,
+    builds: cleanBuilds,
+    bike: { values: cleanValues, at: String(bike.at || '') }
+  };
+}
 
 function readLocalState() {
   try {
     var raw = localStorage.getItem(LS_STATE);
-    var parsed = raw ? JSON.parse(raw) : null;
-    return parsed && typeof parsed === 'object' ? parsed : {};
+    return normalizeState(raw ? JSON.parse(raw) : null);
   } catch (err) {
-    return {};
+    return emptyState();
   }
 }
 
@@ -95,35 +151,108 @@ function getToken() {
   }
 }
 
-/** Sloučí dvě sady voleb, u každé položky vyhrává novější časová značka. */
-function mergeState(a, b) {
+/** U každého záznamu vyhraje novější časová značka. */
+function mergeByStamp(a, b) {
   var out = {};
-  [a, b].forEach(function (source) {
-    Object.keys(source || {}).forEach(function (uid) {
-      var entry = source[uid];
-      if (!entry || (entry.flag !== 'like' && entry.flag !== 'skip')) { return; }
-      var current = out[uid];
+  [a || {}, b || {}].forEach(function (source) {
+    Object.keys(source).forEach(function (key) {
+      var entry = source[key];
+      var current = out[key];
       if (!current || String(entry.at || '') > String(current.at || '')) {
-        out[uid] = { flag: entry.flag, at: entry.at || '' };
+        out[key] = entry;
       }
     });
   });
   return out;
 }
 
-function flagOf(uid) {
-  return state[uid] ? state[uid].flag : null;
+/** Sloučí dva stavy. Smazané sady zůstávají jako značka, aby se smazání
+ *  přeneslo i na druhé zařízení a sada tam znovu nevyskočila. */
+function mergeState(a, b) {
+  var newerBike = String(b.bike.at || '') > String(a.bike.at || '') ? b.bike : a.bike;
+  return {
+    items: mergeByStamp(a.items, b.items),
+    builds: mergeByStamp(a.builds, b.builds),
+    bike: { values: newerBike.values || {}, at: newerBike.at || '' }
+  };
 }
 
-function setFlag(uid, flag) {
-  if (flagOf(uid) === flag) {
-    delete state[uid];
-  } else {
-    state[uid] = { flag: flag, at: new Date().toISOString() };
-  }
+function touch() {
   writeLocalState();
   render();
   schedulePush();
+}
+
+function flagOf(uid) {
+  return state.items[uid] ? state.items[uid].flag : null;
+}
+
+function setFlag(uid, flag) {
+  // Odkliknutí se neukládá jako smazání, ale jako 'none'. Bez té značky
+  // by se při sloučení s jiným zařízením vrátil starý příznak zpátky.
+  state.items[uid] = { flag: flagOf(uid) === flag ? 'none' : flag, at: now() };
+  touch();
+}
+
+/* ---------- sady ---------- */
+
+function liveBuilds() {
+  return Object.keys(state.builds)
+    .map(function (id) { return state.builds[id]; })
+    .filter(function (build) { return !build.deleted; })
+    .sort(function (x, y) { return String(x.at).localeCompare(String(y.at)); });
+}
+
+function addBuild() {
+  var id = 'b' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+  state.builds[id] = {
+    id: id,
+    name: 'Sada ' + (liveBuilds().length + 1),
+    uids: [],
+    at: now(),
+    deleted: false
+  };
+  touch();
+}
+
+function updateBuild(id, change) {
+  var build = state.builds[id];
+  if (!build) { return; }
+  Object.keys(change).forEach(function (key) { build[key] = change[key]; });
+  build.at = now();
+  touch();
+}
+
+function toggleBuildItem(id, uid) {
+  var build = state.builds[id];
+  if (!build) { return; }
+  var at = build.uids.indexOf(uid);
+  var uids = build.uids.slice();
+  if (at === -1) { uids.push(uid); } else { uids.splice(at, 1); }
+  updateBuild(id, { uids: uids });
+}
+
+/* ---------- profil kola ---------- */
+
+/** Profil ze specifikace doplněný o to, co uživatel dovyplnil na stránce. */
+function effectiveBike() {
+  var bike = {};
+  Object.keys(data.bike || {}).forEach(function (key) { bike[key] = data.bike[key]; });
+  BIKE_FIELDS.forEach(function (field) {
+    var value = state.bike.values[field];
+    if (value) { bike[field] = value; }
+  });
+  return bike;
+}
+
+function setBikeField(field, value) {
+  var values = {};
+  BIKE_FIELDS.forEach(function (key) {
+    if (state.bike.values[key]) { values[key] = state.bike.values[key]; }
+  });
+  if (value) { values[field] = value; } else { delete values[field]; }
+  state.bike = { values: values, at: now() };
+  touch();
 }
 
 /* ---------- synchronizace s GitHubem ---------- */
@@ -141,10 +270,7 @@ function apiHeaders(token) {
 }
 
 function parseStatePayload(text) {
-  var parsed = JSON.parse(text);
-  return parsed && typeof parsed.items === 'object' && parsed.items
-    ? parsed.items
-    : {};
+  return normalizeState(JSON.parse(text));
 }
 
 /** Načte vzdálený stav. S tokenem přes API (svěží + dá sha), jinak ze souboru. */
@@ -157,7 +283,7 @@ function fetchRemoteState() {
         stateSha = null;
         return parseStatePayload(text);
       })
-      .catch(function () { return {}; });
+      .catch(function () { return emptyState(); });
   }
   return fetch(apiUrl(), { headers: apiHeaders(token), cache: 'no-store' })
     .then(function (res) {
@@ -186,8 +312,10 @@ function pushRemoteState(retryOnConflict) {
   if (!token) { return Promise.resolve(); }
 
   var payload = {
-    updated_at: new Date().toISOString(),
-    items: state
+    updated_at: now(),
+    items: state.items,
+    builds: state.builds,
+    bike: state.bike
   };
   var body = {
     message: 'chore: update state.json [skip ci]',
@@ -430,8 +558,296 @@ function renderCalc() {
   note.textContent = parts.join(' ');
 }
 
+/* ---------- kolo: co se vejde ---------- */
+
+function fitLines() {
+  var bike = effectiveBike();
+  var lines = [];
+
+  if (bike.freehub === '11' || bike.freehub === '11s') {
+    lines.push(['ok', 'Kazeta: ořech je 11rychlostní, takže 11s i 12s silniční'
+      + ' kazeta se na náboj nasune.']);
+  } else if (bike.freehub) {
+    lines.push(['bad', 'Kazeta: ořech je ' + bike.freehub + 'rychlostní \u2013'
+      + ' 11s a 12s kazeta se na něj nevejde. Buď zůstaň na 10s, nebo počítej'
+      + ' i s novým nábojem/zapletením.']);
+  } else {
+    lines.push(['ask', 'Kazeta: nevíš, jaký je vzadu ořech. Kolo je z výroby'
+      + ' 9rychlostní, takže tohle rozhoduje, jestli je 11s/12s vůbec možné.'
+      + ' Zjisti to první \u2013 než cokoliv koupíš.']);
+  }
+
+  var cogs = bike.rd_max_cog || {};
+  var models = Object.keys(cogs).sort(function (a, b) { return cogs[a] - cogs[b]; });
+  if (models.length) {
+    lines.push(['info', 'Největší pastorek: limit dává přehazovačka \u2013 '
+      + models.map(function (m) {
+        return m.toUpperCase() + ' do ' + cogs[m] + 'z';
+      }).join(', ')
+      + '. Větší kazeta dře o klec. Dnes máš ' + (bike.current_cogs || []).join('\u2013')
+      + '.']);
+  }
+
+  if (bike.fd_max_capacity) {
+    lines.push(['info', 'Převodníky: s přesmykačem smí být rozdíl nejvýš '
+      + bike.fd_max_capacity + ' zubů \u2013 50/34 i 48/32 projde, 53/34 ne.'
+      + ' U 1\u00d7 tohle neplatí.']);
+  }
+
+  var lengths = bike.crank_length_by_size || {};
+  if (bike.frame_size && lengths[bike.frame_size]) {
+    lines.push(['ok', 'Kliky: rám ' + bike.frame_size + ' \u2192 hledej '
+      + String(lengths[bike.frame_size]).replace('.', ',') + ' mm.']);
+  } else {
+    lines.push(['ask', 'Kliky: délka podle velikosti rámu ('
+      + Object.keys(lengths).map(function (size) {
+        return size + ' ' + String(lengths[size]).replace('.', ',');
+      }).join(', ') + ' mm). Doplň velikost rámu.']);
+  }
+
+  if (bike.bb_shell) {
+    lines.push(['ok', 'Střed: ' + (bike.bb_shell === 'bsa' ? 'BSA se závitem'
+      : 'PressFit') + ', k tomu kupuj odpovídající Hollowtech II střed.']);
+  } else {
+    lines.push(['ask', 'Střed: Shimano kliky potřebují Hollowtech II střed,'
+      + ' kolo má z výroby FSA cartridge. Zjisti, jestli je rám BSA, nebo PressFit.']);
+  }
+
+  if (bike.fd_mount) {
+    lines.push(['ok', 'Přesmykač: ' + (bike.fd_mount === 'braze-on'
+      ? 'braze-on (na čep)' : 'na objímku') + '.']);
+  } else {
+    lines.push(['ask', 'Přesmykač: braze-on a objímka nejsou zaměnitelné.'
+      + ' Podívej se na sedlovou trubku.']);
+  }
+
+  lines.push(['info', 'Brzdy: rám i vidlice jsou flat mount kotouč, kotouče '
+    + (bike.rotor_mm || 160) + ' mm \u2013 ráfkové třmeny nejde přišroubovat'
+    + ' a k 160 mm kotouči patří adaptér.']);
+
+  return lines;
+}
+
+function renderBike() {
+  $('bike-name').textContent = (data.bike && data.bike.name)
+    ? data.bike.name + ' \u00b7 dnes ' + (data.bike.current_speeds || '?')
+      + 'rychlostní, ' + (data.bike.current_chainrings || []).join('/')
+      + ' vepředu' : '';
+
+  var list = $('bike-fit');
+  list.textContent = '';
+  fitLines().forEach(function (line) {
+    var row = document.createElement('li');
+    row.className = 'fit__row fit__row--' + line[0];
+    row.textContent = line[1];
+    list.appendChild(row);
+  });
+
+  BIKE_FIELDS.forEach(function (field) {
+    var select = $('bike-' + field);
+    if (select) { select.value = state.bike.values[field] || ''; }
+  });
+}
+
+/* ---------- sady ---------- */
+
+function issueList(issues, kind, heading) {
+  if (!issues.length) { return null; }
+  var box = document.createElement('div');
+  box.className = 'issues issues--' + kind;
+  var title = document.createElement('h4');
+  title.textContent = heading + ' (' + issues.length + ')';
+  box.appendChild(title);
+  var list = document.createElement('ul');
+  issues.forEach(function (issue) {
+    var row = document.createElement('li');
+    var strong = document.createElement('strong');
+    strong.textContent = issue.title;
+    row.appendChild(strong);
+    var detail = document.createElement('span');
+    detail.textContent = ' ' + issue.detail;
+    row.appendChild(detail);
+    list.appendChild(row);
+  });
+  box.appendChild(list);
+  return box;
+}
+
+/** Nabídka dílů do sady: co máš nasrdíčkované + co už v sadě je. */
+function candidates(build) {
+  return data.items.filter(function (item) {
+    return flagOf(item.uid) === 'like' || build.uids.indexOf(item.uid) !== -1;
+  });
+}
+
+function buildPicker(build) {
+  var box = document.createElement('div');
+  box.className = 'parts';
+
+  var options = candidates(build);
+  if (!options.length) {
+    var hint = document.createElement('p');
+    hint.className = 'muted';
+    hint.textContent = 'Nejdřív si v seznamu dole zaklikej srdíčkem, co tě'
+      + ' zajímá. Pak si z toho tady poskládáš sadu.';
+    box.appendChild(hint);
+    return box;
+  }
+
+  categoryOrder().forEach(function (key) {
+    var picked = options.filter(function (item) { return item.category_key === key; });
+    if (!picked.length) { return; }
+
+    var group = document.createElement('div');
+    group.className = 'parts__group';
+    var label = document.createElement('span');
+    label.className = 'pill';
+    label.textContent = categoryInfo(key).label;
+    group.appendChild(label);
+
+    picked.forEach(function (item) {
+      var row = document.createElement('label');
+      row.className = 'check check--part';
+      var box2 = document.createElement('input');
+      box2.type = 'checkbox';
+      box2.checked = build.uids.indexOf(item.uid) !== -1;
+      box2.addEventListener('change', function () {
+        toggleBuildItem(build.id, item.uid);
+      });
+      var text = document.createElement('span');
+      text.textContent = (item.title || '(bez názvu)') + ' \u2013 ' + money(item.price);
+      var specs = specLabel(item);
+      if (specs) {
+        var note = document.createElement('em');
+        note.textContent = ' ' + specs;
+        text.appendChild(note);
+      }
+      row.appendChild(box2);
+      row.appendChild(text);
+      group.appendChild(row);
+    });
+    box.appendChild(group);
+  });
+  return box;
+}
+
+/** Krátký výpis rozpoznaných parametrů, ať je vidět, z čeho kontrola vychází. */
+function specLabel(item) {
+  var specs = item.specs || {};
+  var bits = [];
+  if (specs.part && Compat.PART_LABELS[specs.part]) {
+    bits.push(Compat.PART_LABELS[specs.part]);
+  }
+  if (specs.front && specs.speeds) {
+    bits.push(specs.front + '\u00d7' + specs.speeds);
+  } else if (specs.speeds) {
+    bits.push(specs.speeds + '\u00d7');
+  }
+  if (specs.cog_min && specs.cog_max) {
+    bits.push(specs.cog_min + '\u2013' + specs.cog_max + 'z');
+  }
+  if (specs.chainring_big && specs.chainring_small) {
+    bits.push(specs.chainring_big + '/' + specs.chainring_small);
+  }
+  if (specs.brake === 'disc-hydraulic') { bits.push('hydraulika'); }
+  if (specs.brake === 'rim') { bits.push('ráfková'); }
+  if (specs.electronic) { bits.push('Di2'); }
+  return bits.length ? '(' + bits.join(', ') + ')' : '';
+}
+
+function buildCardFor(build) {
+  var items = data.items.filter(function (item) {
+    return build.uids.indexOf(item.uid) !== -1;
+  });
+  var sum = 0;
+  items.forEach(function (item) { sum += item.price || 0; });
+  var result = Compat.checkBuild(items, effectiveBike());
+  var budget = data.total_budget;
+
+  var card = document.createElement('article');
+  card.className = 'build';
+  if (result.hard.length) { card.className += ' build--bad'; }
+  else if (items.length) { card.className += ' build--ok'; }
+
+  var head = document.createElement('div');
+  head.className = 'build__head';
+
+  var name = document.createElement('input');
+  name.type = 'text';
+  name.className = 'build__name';
+  name.value = build.name;
+  name.maxLength = MAX_NAME;
+  name.setAttribute('aria-label', 'Název sady');
+  name.addEventListener('change', function () {
+    updateBuild(build.id, { name: name.value.slice(0, MAX_NAME) });
+  });
+  head.appendChild(name);
+
+  var price = document.createElement('strong');
+  price.className = 'build__price' + (budget && sum > budget ? ' over' : '');
+  price.textContent = money(sum);
+  head.appendChild(price);
+
+  var remove = document.createElement('button');
+  remove.type = 'button';
+  remove.className = 'btn btn--ghost';
+  remove.textContent = 'Smazat';
+  remove.addEventListener('click', function () {
+    updateBuild(build.id, { deleted: true });
+  });
+  head.appendChild(remove);
+  card.appendChild(head);
+
+  var status = document.createElement('p');
+  status.className = 'build__status';
+  if (!items.length) {
+    status.textContent = 'Prázdná sada \u2013 zaškrtni níž díly, které do ní patří.';
+  } else if (result.hard.length) {
+    status.textContent = 'Takhle to nepojede, ' + result.hard.length
+      + '\u00d7 to drhne.';
+  } else {
+    status.textContent = items.length + ' dílů, kontrola neprošla na nic'
+      + ' zásadního.'
+      + (budget ? (sum > budget ? ' Rozpočet přetažený o ' + money(sum - budget) + '.'
+        : ' V rozpočtu, zbývá ' + money(budget - sum) + '.') : '');
+  }
+  card.appendChild(status);
+
+  [
+    [result.hard, 'hard', 'Nepojede to'],
+    [result.soft, 'soft', 'Asi problém'],
+    [result.verify, 'verify', 'Doptat se / ověřit']
+  ].forEach(function (spec) {
+    var box = issueList(spec[0], spec[1], spec[2]);
+    if (box) { card.appendChild(box); }
+  });
+
+  card.appendChild(buildPicker(build));
+  return card;
+}
+
+function renderBuilds() {
+  var host = $('builds');
+  host.textContent = '';
+  var builds = liveBuilds();
+  builds.forEach(function (build) { host.appendChild(buildCardFor(build)); });
+
+  var liked = data.items.filter(function (i) { return flagOf(i.uid) === 'like'; });
+  if (!builds.length) {
+    $('builds-note').textContent = 'Založ si sadu pro každou variantu, kterou'
+      + ' zvažuješ (105 A, GRX A, GRX B\u2026). U každé se spočítá cena a'
+      + ' zkontroluje, jestli do sebe díly pasují a vejdou se na kolo.'
+      + (liked.length ? '' : ' Nejdřív si ale zaklikej srdíčka v seznamu dole.');
+  } else {
+    $('builds-note').textContent = builds.length + ' sad \u00b7 na výběr máš '
+      + liked.length + ' nasrdíčkovaných dílů.';
+  }
+}
+
 function render() {
   renderCalc();
+  renderBike();
+  renderBuilds();
   renderList();
 }
 
@@ -450,6 +866,22 @@ function renderMeta() {
 function bindControls() {
   $('show-rejected').addEventListener('change', renderList);
   $('only-within').addEventListener('change', renderList);
+
+  $('build-add').addEventListener('click', addBuild);
+
+  $('bike-toggle').addEventListener('click', function () {
+    var form = $('bike-form');
+    form.hidden = !form.hidden;
+    $('bike-toggle').textContent = form.hidden ? 'Doplnit, co nevím' : 'Hotovo';
+  });
+
+  BIKE_FIELDS.forEach(function (field) {
+    var select = $('bike-' + field);
+    if (!select) { return; }
+    select.addEventListener('change', function () {
+      setBikeField(field, select.value);
+    });
+  });
 
   $('settings-toggle').addEventListener('click', function () {
     var panel = $('settings');
@@ -505,7 +937,8 @@ function start() {
         generated_at: loaded.generated_at,
         total_budget: loaded.total_budget,
         categories: Array.isArray(loaded.categories) ? loaded.categories : [],
-        items: Array.isArray(loaded.items) ? loaded.items : []
+        items: Array.isArray(loaded.items) ? loaded.items : [],
+        bike: loaded.bike && typeof loaded.bike === 'object' ? loaded.bike : {}
       };
       renderMeta();
       render();

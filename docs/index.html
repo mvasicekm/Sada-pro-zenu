@@ -50,6 +50,67 @@
   <ul id="calc-list" class="calc__list"></ul>
 </section>
 
+<section class="panel panel--bike">
+  <div class="panel__head">
+    <h2>Vejde se to na kolo?</h2>
+    <button id="bike-toggle" class="btn btn--ghost" type="button">Doplnit, co nevím</button>
+  </div>
+  <p id="bike-name" class="muted"></p>
+  <ul id="bike-fit" class="fit"></ul>
+  <div id="bike-form" hidden>
+    <p class="muted">
+      Tohle ze specifikace výrobce nejde vyčíst. Dokud je vybráno
+      &bdquo;nevím&ldquo;, stránka nic nezakazuje, jen to připomíná.
+      Až se na kolo podíváš, doplň to &ndash; pak teprve pozná, co nepasuje.
+    </p>
+    <div class="grid">
+      <label class="field">
+        <span>Tělo náboje vzadu (ořech)</span>
+        <select id="bike-freehub">
+          <option value="">nevím</option>
+          <option value="11">11rychlostní (HG 11s)</option>
+          <option value="9">8/9/10rychlostní (kratší)</option>
+        </select>
+      </label>
+      <label class="field">
+        <span>Středové složení v rámu</span>
+        <select id="bike-bb_shell">
+          <option value="">nevím</option>
+          <option value="bsa">BSA se závitem</option>
+          <option value="pressfit">PressFit</option>
+        </select>
+      </label>
+      <label class="field">
+        <span>Uchycení přesmykače</span>
+        <select id="bike-fd_mount">
+          <option value="">nevím</option>
+          <option value="braze-on">braze-on (čep na rámu)</option>
+          <option value="clamp">objímka</option>
+        </select>
+      </label>
+      <label class="field">
+        <span>Velikost rámu</span>
+        <select id="bike-frame_size">
+          <option value="">nevím</option>
+          <option value="XS">XS</option>
+          <option value="S">S</option>
+          <option value="M">M</option>
+          <option value="L">L</option>
+        </select>
+      </label>
+    </div>
+  </div>
+</section>
+
+<section class="panel panel--builds">
+  <div class="panel__head">
+    <h2>Sady a kompatibilita</h2>
+    <button id="build-add" class="btn" type="button">Nová sada</button>
+  </div>
+  <p id="builds-note" class="muted"></p>
+  <div id="builds"></div>
+</section>
+
 <nav class="controls">
   <label class="check">
     <input id="show-rejected" type="checkbox">
@@ -69,6 +130,7 @@
   Prodané inzeráty ze seznamu samy zmizí.
 </footer>
 
+<script src="compat.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

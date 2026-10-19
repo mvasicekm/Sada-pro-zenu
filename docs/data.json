@@ -1,6 +1,48 @@
 {
-  "generated_at": "2026-10-19T11:54:10+00:00",
+  "generated_at": "2026-10-19T12:29:23+00:00",
   "total_budget": 8000,
+  "bike": {
+    "name": "Liv Devote 2 (2024)",
+    "_zdroj": "Oficiální specifikace výrobce. Co je null, z ní nejde vyčíst -",
+    "_zdroj2": "musí se ověřit na kole a doplnit, jinak to stránka jen připomíná.",
+    "brake_mount": "flat-mount-disc",
+    "rotor_mm": 160,
+    "rear_axle": "12x142",
+    "target_brake": "disc-hydraulic",
+    "current_speeds": 9,
+    "current_chainrings": [
+      48,
+      32
+    ],
+    "current_cogs": [
+      11,
+      34
+    ],
+    "max_tire_mm": 53,
+    "freehub": null,
+    "bb_shell": null,
+    "fd_mount": null,
+    "frame_size": null,
+    "crank_length_by_size": {
+      "XS": 165,
+      "S": 170,
+      "M": 172.5,
+      "L": 172.5
+    },
+    "_fd_capacity": "Rozdíl převodníků, který přesmykač zvládne přeřadit.",
+    "fd_max_capacity": 16,
+    "_rd_max_cog": "Největší pastorek podle modelu přehazovačky. Uvedená je",
+    "_rd_max_cog2": "delší klec (GS/SGS); krátká klec SS zvládne jen 30 zubů.",
+    "rd_max_cog": {
+      "r7000": 34,
+      "r7100": 36,
+      "rx400": 36,
+      "rx810": 34,
+      "rx812": 42,
+      "rx820": 36,
+      "rx822": 45
+    }
+  },
   "categories": [
     {
       "key": "cela_sada",
@@ -44,7 +86,18 @@
       "category_label": "Celá sada",
       "category_max_price": 8000,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-10-19T11:54:10+00:00"
+      "last_seen": "2026-10-19T11:54:10+00:00",
+      "specs": {
+        "speeds": 12,
+        "front": 1,
+        "brake": "disc-hydraulic",
+        "part": null,
+        "electronic": null,
+        "cog_min": null,
+        "cog_max": null,
+        "chainring_big": null,
+        "chainring_small": null
+      }
     },
     {
       "uid": "bazos:224860761",
@@ -56,7 +109,18 @@
       "category_label": "Celá sada",
       "category_max_price": 8000,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-10-19T11:54:10+00:00"
+      "last_seen": "2026-10-19T11:54:10+00:00",
+      "specs": {
+        "speeds": 10,
+        "front": 2,
+        "brake": null,
+        "part": null,
+        "electronic": null,
+        "cog_min": null,
+        "cog_max": null,
+        "chainring_big": null,
+        "chainring_small": null
+      }
     },
     {
       "uid": "bazos:224747737",
@@ -68,7 +132,18 @@
       "category_label": "Celá sada",
       "category_max_price": 8000,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-10-19T11:54:10+00:00"
+      "last_seen": "2026-10-19T11:54:10+00:00",
+      "specs": {
+        "speeds": null,
+        "front": null,
+        "brake": null,
+        "part": null,
+        "electronic": null,
+        "cog_min": null,
+        "cog_max": null,
+        "chainring_big": null,
+        "chainring_small": null
+      }
     },
     {
       "uid": "bazos:225054114",
@@ -80,7 +155,18 @@
       "category_label": "Celá sada",
       "category_max_price": 8000,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-10-19T11:54:10+00:00"
+      "last_seen": "2026-10-19T11:54:10+00:00",
+      "specs": {
+        "speeds": null,
+        "front": null,
+        "brake": null,
+        "part": null,
+        "electronic": null,
+        "cog_min": null,
+        "cog_max": null,
+        "chainring_big": null,
+        "chainring_small": null
+      }
     },
     {
       "uid": "bazos:225190866",
@@ -92,7 +178,18 @@
       "category_label": "Celá sada",
       "category_max_price": 8000,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-10-19T11:54:10+00:00"
+      "last_seen": "2026-10-19T11:54:10+00:00",
+      "specs": {
+        "speeds": null,
+        "front": null,
+        "brake": null,
+        "part": null,
+        "electronic": null,
+        "cog_min": null,
+        "cog_max": null,
+        "chainring_big": null,
+        "chainring_small": null
+      }
     },
     {
       "uid": "bazos:225269713",
@@ -104,7 +201,18 @@
       "category_label": "Celá sada",
       "category_max_price": 8000,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-10-19T11:54:10+00:00"
+      "last_seen": "2026-10-19T11:54:10+00:00",
+      "specs": {
+        "speeds": 11,
+        "front": null,
+        "brake": null,
+        "part": null,
+        "electronic": null,
+        "cog_min": null,
+        "cog_max": null,
+        "chainring_big": null,
+        "chainring_small": null
+      }
     },
     {
       "uid": "cyklobazar:EnGyDEQQ1naWK",
@@ -116,7 +224,18 @@
       "category_label": "Celá sada",
       "category_max_price": 8000,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-10-19T11:54:10+00:00"
+      "last_seen": "2026-10-19T11:54:10+00:00",
+      "specs": {
+        "speeds": 12,
+        "front": 1,
+        "brake": null,
+        "part": null,
+        "electronic": true,
+        "cog_min": null,
+        "cog_max": null,
+        "chainring_big": null,
+        "chainring_small": null
+      }
     },
     {
       "uid": "bazos:224915950",
@@ -128,7 +247,18 @@
       "category_label": "Celá sada",
       "category_max_price": 8000,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-10-19T11:54:10+00:00"
+      "last_seen": "2026-10-19T11:54:10+00:00",
+      "specs": {
+        "speeds": null,
+        "front": null,
+        "brake": null,
+        "part": null,
+        "electronic": null,
+        "cog_min": null,
+        "cog_max": null,
+        "chainring_big": null,
+        "chainring_small": null
+      }
     },
     {
       "uid": "bazos:224937328",
@@ -140,7 +270,18 @@
       "category_label": "Celá sada",
       "category_max_price": 8000,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-10-19T11:54:10+00:00"
+      "last_seen": "2026-10-19T11:54:10+00:00",
+      "specs": {
+        "speeds": null,
+        "front": null,
+        "brake": null,
+        "part": null,
+        "electronic": null,
+        "cog_min": null,
+        "cog_max": null,
+        "chainring_big": null,
+        "chainring_small": null
+      }
     },
     {
       "uid": "bazos:223626943",
@@ -152,7 +293,18 @@
       "category_label": "Celá sada",
       "category_max_price": 8000,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-10-19T11:54:10+00:00"
+      "last_seen": "2026-10-19T11:54:10+00:00",
+      "specs": {
+        "speeds": null,
+        "front": null,
+        "brake": null,
+        "part": null,
+        "electronic": null,
+        "cog_min": null,
+        "cog_max": null,
+        "chainring_big": null,
+        "chainring_small": null
+      }
     },
     {
       "uid": "bazos:224861194",
@@ -164,7 +316,18 @@
       "category_label": "Celá sada",
       "category_max_price": 8000,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-10-19T11:54:10+00:00"
+      "last_seen": "2026-10-19T11:54:10+00:00",
+      "specs": {
+        "speeds": 10,
+        "front": null,
+        "brake": null,
+        "part": null,
+        "electronic": null,
+        "cog_min": null,
+        "cog_max": null,
+        "chainring_big": null,
+        "chainring_small": null
+      }
     },
     {
       "uid": "bazos:225094000",
@@ -176,7 +339,18 @@
       "category_label": "Celá sada",
       "category_max_price": 8000,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-10-19T11:54:10+00:00"
+      "last_seen": "2026-10-19T11:54:10+00:00",
+      "specs": {
+        "speeds": 11,
+        "front": 2,
+        "brake": null,
+        "part": null,
+        "electronic": null,
+        "cog_min": null,
+        "cog_max": null,
+        "chainring_big": null,
+        "chainring_small": null
+      }
     },
     {
       "uid": "bazos:225093913",
@@ -188,7 +362,18 @@
       "category_label": "Celá sada",
       "category_max_price": 8000,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-10-19T11:54:10+00:00"
+      "last_seen": "2026-10-19T11:54:10+00:00",
+      "specs": {
+        "speeds": 11,
+        "front": 2,
+        "brake": null,
+        "part": null,
+        "electronic": null,
+        "cog_min": null,
+        "cog_max": null,
+        "chainring_big": null,
+        "chainring_small": null
+      }
     },
     {
       "uid": "bazos:223128318",
@@ -200,7 +385,18 @@
       "category_label": "Celá sada",
       "category_max_price": 8000,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-10-19T11:54:10+00:00"
+      "last_seen": "2026-10-19T11:54:10+00:00",
+      "specs": {
+        "speeds": 12,
+        "front": 2,
+        "brake": null,
+        "part": null,
+        "electronic": null,
+        "cog_min": null,
+        "cog_max": null,
+        "chainring_big": null,
+        "chainring_small": null
+      }
     },
     {
       "uid": "bazos:225012961",
@@ -212,7 +408,18 @@
       "category_label": "Celá sada",
       "category_max_price": 8000,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-10-19T11:54:10+00:00"
+      "last_seen": "2026-10-19T11:54:10+00:00",
+      "specs": {
+        "speeds": null,
+        "front": null,
+        "brake": null,
+        "part": null,
+        "electronic": true,
+        "cog_min": null,
+        "cog_max": null,
+        "chainring_big": null,
+        "chainring_small": null
+      }
     },
     {
       "uid": "bazos:225272949",
@@ -224,7 +431,18 @@
       "category_label": "Celá sada",
       "category_max_price": 8000,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-10-19T11:54:10+00:00"
+      "last_seen": "2026-10-19T11:54:10+00:00",
+      "specs": {
+        "speeds": null,
+        "front": null,
+        "brake": null,
+        "part": null,
+        "electronic": true,
+        "cog_min": null,
+        "cog_max": null,
+        "chainring_big": null,
+        "chainring_small": null
+      }
     },
     {
       "uid": "bazos:225130090",
@@ -236,7 +454,18 @@
       "category_label": "Kazeta",
       "category_max_price": 800,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-10-19T11:54:10+00:00"
+      "last_seen": "2026-10-19T11:54:10+00:00",
+      "specs": {
+        "speeds": 11,
+        "front": null,
+        "brake": null,
+        "part": "cassette",
+        "electronic": null,
+        "cog_min": null,
+        "cog_max": null,
+        "chainring_big": null,
+        "chainring_small": null
+      }
     },
     {
       "uid": "bazos:224524418",
@@ -248,7 +477,18 @@
       "category_label": "Kazeta",
       "category_max_price": 800,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-10-19T11:54:10+00:00"
+      "last_seen": "2026-10-19T11:54:10+00:00",
+      "specs": {
+        "speeds": 11,
+        "front": null,
+        "brake": null,
+        "part": "cassette",
+        "electronic": null,
+        "cog_min": null,
+        "cog_max": null,
+        "chainring_big": null,
+        "chainring_small": null
+      }
     },
     {
       "uid": "bazos:223440569",
@@ -260,7 +500,18 @@
       "category_label": "Kazeta",
       "category_max_price": 800,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-10-19T11:54:10+00:00"
+      "last_seen": "2026-10-19T11:54:10+00:00",
+      "specs": {
+        "speeds": 11,
+        "front": null,
+        "brake": null,
+        "part": "cassette",
+        "electronic": null,
+        "cog_min": 11,
+        "cog_max": 32,
+        "chainring_big": null,
+        "chainring_small": null
+      }
     },
     {
       "uid": "bazos:225231198",
@@ -272,7 +523,18 @@
       "category_label": "Kazeta",
       "category_max_price": 800,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-10-19T11:54:10+00:00"
+      "last_seen": "2026-10-19T11:54:10+00:00",
+      "specs": {
+        "speeds": null,
+        "front": null,
+        "brake": null,
+        "part": null,
+        "electronic": null,
+        "cog_min": null,
+        "cog_max": null,
+        "chainring_big": null,
+        "chainring_small": null
+      }
     },
     {
       "uid": "bazos:225230883",
@@ -284,7 +546,18 @@
       "category_label": "Kazeta",
       "category_max_price": 800,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-10-19T11:54:10+00:00"
+      "last_seen": "2026-10-19T11:54:10+00:00",
+      "specs": {
+        "speeds": null,
+        "front": null,
+        "brake": null,
+        "part": null,
+        "electronic": null,
+        "cog_min": null,
+        "cog_max": null,
+        "chainring_big": null,
+        "chainring_small": null
+      }
     },
     {
       "uid": "bazos:225020480",
@@ -296,7 +569,18 @@
       "category_label": "Kazeta",
       "category_max_price": 800,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-10-19T11:54:10+00:00"
+      "last_seen": "2026-10-19T11:54:10+00:00",
+      "specs": {
+        "speeds": 12,
+        "front": 2,
+        "brake": null,
+        "part": null,
+        "electronic": null,
+        "cog_min": null,
+        "cog_max": null,
+        "chainring_big": null,
+        "chainring_small": null
+      }
     },
     {
       "uid": "bazos:223891916",
@@ -308,7 +592,18 @@
       "category_label": "Kliky",
       "category_max_price": 2200,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-10-19T11:54:10+00:00"
+      "last_seen": "2026-10-19T11:54:10+00:00",
+      "specs": {
+        "speeds": 12,
+        "front": null,
+        "brake": null,
+        "part": "crank",
+        "electronic": null,
+        "cog_min": null,
+        "cog_max": null,
+        "chainring_big": null,
+        "chainring_small": null
+      }
     },
     {
       "uid": "cyklobazar:EnGyDEQQ1n1Bm",
@@ -320,7 +615,18 @@
       "category_label": "Kliky",
       "category_max_price": 2200,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-10-19T11:54:10+00:00"
+      "last_seen": "2026-10-19T11:54:10+00:00",
+      "specs": {
+        "speeds": 12,
+        "front": null,
+        "brake": null,
+        "part": "crank",
+        "electronic": null,
+        "cog_min": null,
+        "cog_max": null,
+        "chainring_big": null,
+        "chainring_small": null
+      }
     },
     {
       "uid": "bazos:225253903",
@@ -332,7 +638,18 @@
       "category_label": "Kliky",
       "category_max_price": 2200,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-10-19T11:54:10+00:00"
+      "last_seen": "2026-10-19T11:54:10+00:00",
+      "specs": {
+        "speeds": 11,
+        "front": null,
+        "brake": null,
+        "part": "crank",
+        "electronic": null,
+        "cog_min": null,
+        "cog_max": null,
+        "chainring_big": null,
+        "chainring_small": null
+      }
     },
     {
       "uid": "bazos:223920138",
@@ -344,7 +661,18 @@
       "category_label": "Kliky",
       "category_max_price": 2200,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-10-19T11:54:10+00:00"
+      "last_seen": "2026-10-19T11:54:10+00:00",
+      "specs": {
+        "speeds": 12,
+        "front": 2,
+        "brake": null,
+        "part": "crank",
+        "electronic": null,
+        "cog_min": null,
+        "cog_max": null,
+        "chainring_big": 46,
+        "chainring_small": 30
+      }
     },
     {
       "uid": "bazos:225122983",
@@ -356,7 +684,18 @@
       "category_label": "Kliky",
       "category_max_price": 2200,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-10-19T11:54:10+00:00"
+      "last_seen": "2026-10-19T11:54:10+00:00",
+      "specs": {
+        "speeds": null,
+        "front": null,
+        "brake": null,
+        "part": "crank",
+        "electronic": null,
+        "cog_min": null,
+        "cog_max": null,
+        "chainring_big": null,
+        "chainring_small": null
+      }
     },
     {
       "uid": "cyklobazar:pODe1MXeoORjw",
@@ -368,7 +707,18 @@
       "category_label": "Kliky",
       "category_max_price": 2200,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-10-19T11:54:10+00:00"
+      "last_seen": "2026-10-19T11:54:10+00:00",
+      "specs": {
+        "speeds": null,
+        "front": null,
+        "brake": null,
+        "part": "crank",
+        "electronic": null,
+        "cog_min": null,
+        "cog_max": null,
+        "chainring_big": null,
+        "chainring_small": null
+      }
     },
     {
       "uid": "bazos:225252376",
@@ -380,7 +730,18 @@
       "category_label": "Kliky",
       "category_max_price": 2200,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-10-19T11:54:10+00:00"
+      "last_seen": "2026-10-19T11:54:10+00:00",
+      "specs": {
+        "speeds": null,
+        "front": null,
+        "brake": null,
+        "part": "crank",
+        "electronic": null,
+        "cog_min": null,
+        "cog_max": null,
+        "chainring_big": null,
+        "chainring_small": null
+      }
     },
     {
       "uid": "cyklobazar:2dqYnmvGPqKvj",
@@ -392,7 +753,18 @@
       "category_label": "Kliky",
       "category_max_price": 2200,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-10-19T11:54:10+00:00"
+      "last_seen": "2026-10-19T11:54:10+00:00",
+      "specs": {
+        "speeds": 11,
+        "front": 1,
+        "brake": null,
+        "part": "crank",
+        "electronic": null,
+        "cog_min": null,
+        "cog_max": null,
+        "chainring_big": null,
+        "chainring_small": null
+      }
     },
     {
       "uid": "bazos:225298834",
@@ -404,7 +776,18 @@
       "category_label": "Kliky",
       "category_max_price": 2200,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-10-19T11:54:10+00:00"
+      "last_seen": "2026-10-19T11:54:10+00:00",
+      "specs": {
+        "speeds": 12,
+        "front": 1,
+        "brake": null,
+        "part": "crank",
+        "electronic": null,
+        "cog_min": null,
+        "cog_max": null,
+        "chainring_big": null,
+        "chainring_small": null
+      }
     },
     {
       "uid": "cyklobazar:zr6qJMNdOgx7G",
@@ -416,7 +799,18 @@
       "category_label": "Kliky",
       "category_max_price": 2200,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-10-19T11:54:10+00:00"
+      "last_seen": "2026-10-19T11:54:10+00:00",
+      "specs": {
+        "speeds": 11,
+        "front": null,
+        "brake": null,
+        "part": "crank",
+        "electronic": null,
+        "cog_min": null,
+        "cog_max": null,
+        "chainring_big": null,
+        "chainring_small": null
+      }
     },
     {
       "uid": "bazos:225195009",
@@ -428,7 +822,18 @@
       "category_label": "Páky / Brzdy",
       "category_max_price": 4500,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-10-19T11:54:10+00:00"
+      "last_seen": "2026-10-19T11:54:10+00:00",
+      "specs": {
+        "speeds": null,
+        "front": null,
+        "brake": null,
+        "part": "brake-lever",
+        "electronic": null,
+        "cog_min": null,
+        "cog_max": null,
+        "chainring_big": null,
+        "chainring_small": null
+      }
     },
     {
       "uid": "bazos:223070767",
@@ -440,7 +845,18 @@
       "category_label": "Páky / Brzdy",
       "category_max_price": 4500,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-10-19T11:54:10+00:00"
+      "last_seen": "2026-10-19T11:54:10+00:00",
+      "specs": {
+        "speeds": 10,
+        "front": null,
+        "brake": null,
+        "part": "brake",
+        "electronic": null,
+        "cog_min": null,
+        "cog_max": null,
+        "chainring_big": null,
+        "chainring_small": null
+      }
     },
     {
       "uid": "bazos:224569222",
@@ -452,7 +868,18 @@
       "category_label": "Páky / Brzdy",
       "category_max_price": 4500,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-10-19T11:54:10+00:00"
+      "last_seen": "2026-10-19T11:54:10+00:00",
+      "specs": {
+        "speeds": 11,
+        "front": 2,
+        "brake": "rim",
+        "part": "lever",
+        "electronic": null,
+        "cog_min": null,
+        "cog_max": null,
+        "chainring_big": null,
+        "chainring_small": null
+      }
     },
     {
       "uid": "cyklobazar:qeldQ8R4KxkAY",
@@ -464,7 +891,18 @@
       "category_label": "Páky / Brzdy",
       "category_max_price": 4500,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-10-19T11:54:10+00:00"
+      "last_seen": "2026-10-19T11:54:10+00:00",
+      "specs": {
+        "speeds": 12,
+        "front": 1,
+        "brake": "disc-hydraulic",
+        "part": "lever",
+        "electronic": null,
+        "cog_min": null,
+        "cog_max": null,
+        "chainring_big": null,
+        "chainring_small": null
+      }
     },
     {
       "uid": "bazos:224917041",
@@ -476,7 +914,18 @@
       "category_label": "Páky / Brzdy",
       "category_max_price": 4500,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-10-19T11:54:10+00:00"
+      "last_seen": "2026-10-19T11:54:10+00:00",
+      "specs": {
+        "speeds": 11,
+        "front": 2,
+        "brake": null,
+        "part": null,
+        "electronic": null,
+        "cog_min": null,
+        "cog_max": null,
+        "chainring_big": null,
+        "chainring_small": null
+      }
     },
     {
       "uid": "bazos:224899823",
@@ -488,7 +937,18 @@
       "category_label": "Páky / Brzdy",
       "category_max_price": 4500,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-10-19T11:54:10+00:00"
+      "last_seen": "2026-10-19T11:54:10+00:00",
+      "specs": {
+        "speeds": null,
+        "front": null,
+        "brake": null,
+        "part": null,
+        "electronic": null,
+        "cog_min": null,
+        "cog_max": null,
+        "chainring_big": null,
+        "chainring_small": null
+      }
     },
     {
       "uid": "bazos:225213729",
@@ -500,7 +960,18 @@
       "category_label": "Páky / Brzdy",
       "category_max_price": 4500,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-10-19T11:54:10+00:00"
+      "last_seen": "2026-10-19T11:54:10+00:00",
+      "specs": {
+        "speeds": null,
+        "front": null,
+        "brake": null,
+        "part": null,
+        "electronic": null,
+        "cog_min": null,
+        "cog_max": null,
+        "chainring_big": null,
+        "chainring_small": null
+      }
     },
     {
       "uid": "bazos:225147943",
@@ -512,7 +983,18 @@
       "category_label": "Páky / Brzdy",
       "category_max_price": 4500,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-10-19T11:54:10+00:00"
+      "last_seen": "2026-10-19T11:54:10+00:00",
+      "specs": {
+        "speeds": null,
+        "front": null,
+        "brake": null,
+        "part": null,
+        "electronic": null,
+        "cog_min": null,
+        "cog_max": null,
+        "chainring_big": null,
+        "chainring_small": null
+      }
     },
     {
       "uid": "bazos:223780429",
@@ -524,7 +1006,18 @@
       "category_label": "Páky / Brzdy",
       "category_max_price": 4500,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-10-19T11:54:10+00:00"
+      "last_seen": "2026-10-19T11:54:10+00:00",
+      "specs": {
+        "speeds": null,
+        "front": null,
+        "brake": null,
+        "part": null,
+        "electronic": null,
+        "cog_min": null,
+        "cog_max": null,
+        "chainring_big": null,
+        "chainring_small": null
+      }
     },
     {
       "uid": "bazos:222861695",
@@ -536,7 +1029,18 @@
       "category_label": "Přehazovačka",
       "category_max_price": 1500,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-10-19T11:54:10+00:00"
+      "last_seen": "2026-10-19T11:54:10+00:00",
+      "specs": {
+        "speeds": 11,
+        "front": 1,
+        "brake": null,
+        "part": "rear-derailleur",
+        "electronic": null,
+        "cog_min": null,
+        "cog_max": null,
+        "chainring_big": null,
+        "chainring_small": null
+      }
     },
     {
       "uid": "bazos:225213619",
@@ -548,7 +1052,18 @@
       "category_label": "Přehazovačka",
       "category_max_price": 1500,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-10-19T11:54:10+00:00"
+      "last_seen": "2026-10-19T11:54:10+00:00",
+      "specs": {
+        "speeds": null,
+        "front": null,
+        "brake": null,
+        "part": null,
+        "electronic": null,
+        "cog_min": null,
+        "cog_max": null,
+        "chainring_big": null,
+        "chainring_small": null
+      }
     },
     {
       "uid": "bazos:224999961",
@@ -560,7 +1075,18 @@
       "category_label": "Přehazovačka",
       "category_max_price": 1500,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-10-19T11:54:10+00:00"
+      "last_seen": "2026-10-19T11:54:10+00:00",
+      "specs": {
+        "speeds": 10,
+        "front": 2,
+        "brake": null,
+        "part": null,
+        "electronic": null,
+        "cog_min": null,
+        "cog_max": null,
+        "chainring_big": null,
+        "chainring_small": null
+      }
     },
     {
       "uid": "cyklobazar:ol4QvMXQmlrAX",
@@ -572,7 +1098,18 @@
       "category_label": "Přesmykač",
       "category_max_price": 700,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-10-19T11:54:10+00:00"
+      "last_seen": "2026-10-19T11:54:10+00:00",
+      "specs": {
+        "speeds": 11,
+        "front": 2,
+        "brake": null,
+        "part": "front-derailleur",
+        "electronic": null,
+        "cog_min": null,
+        "cog_max": null,
+        "chainring_big": null,
+        "chainring_small": null
+      }
     },
     {
       "uid": "bazos:224020589",
@@ -584,7 +1121,18 @@
       "category_label": "Přesmykač",
       "category_max_price": 700,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-10-19T11:54:10+00:00"
+      "last_seen": "2026-10-19T11:54:10+00:00",
+      "specs": {
+        "speeds": 12,
+        "front": 2,
+        "brake": null,
+        "part": null,
+        "electronic": null,
+        "cog_min": null,
+        "cog_max": null,
+        "chainring_big": null,
+        "chainring_small": null
+      }
     },
     {
       "uid": "bazos:224495706",
@@ -596,7 +1144,18 @@
       "category_label": "Přesmykač",
       "category_max_price": 700,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-10-19T11:54:10+00:00"
+      "last_seen": "2026-10-19T11:54:10+00:00",
+      "specs": {
+        "speeds": 11,
+        "front": 2,
+        "brake": null,
+        "part": null,
+        "electronic": null,
+        "cog_min": null,
+        "cog_max": null,
+        "chainring_big": null,
+        "chainring_small": null
+      }
     }
   ]
 }

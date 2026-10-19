@@ -17,6 +17,8 @@ import logging
 import os
 from typing import Dict, List, Optional, Sequence
 
+import specs
+
 log = logging.getLogger(__name__)
 
 DEFAULT_RETENTION_DAYS = 14
@@ -62,6 +64,7 @@ def merge(
     stored: Dict[str, Dict],
     listings: Sequence,
     retention_days: int = DEFAULT_RETENTION_DAYS,
+    specs_cfg: Optional[Dict] = None,
 ) -> List[Dict]:
     """Sloučí nálezy se starým katalogem a vrátí seřazené záznamy."""
     now = _now()
@@ -81,6 +84,11 @@ def merge(
             "first_seen": previous.get("first_seen") or now,
             "last_seen": now,
         }
+
+    # Parametry se počítají u všech záznamů, ne jen u dnes nalezených, aby se
+    # oprava tabulky kódů v config.json projevila i na starších inzerátech.
+    for item in merged.values():
+        item["specs"] = specs.extract(item.get("title", ""), specs_cfg)
 
     if retention_days > 0:
         cutoff = dt.datetime.now(dt.timezone.utc) - dt.timedelta(days=retention_days)
@@ -111,11 +119,13 @@ def save(
     items: Sequence[Dict],
     categories: Sequence,
     total_budget: Optional[int] = None,
+    bike: Optional[Dict] = None,
 ) -> None:
-    """Zapíše katalog atomicky, včetně kategorií pro kalkulačku."""
+    """Zapíše katalog atomicky, včetně kategorií a profilu kola."""
     payload = {
         "generated_at": _now(),
         "total_budget": total_budget,
+        "bike": bike or {},
         "categories": [
             {"key": c.key, "label": c.label, "max_price": c.max_price}
             for c in categories
@@ -138,8 +148,10 @@ def update(
     categories: Sequence,
     total_budget: Optional[int] = None,
     retention_days: int = DEFAULT_RETENTION_DAYS,
+    specs_cfg: Optional[Dict] = None,
+    bike: Optional[Dict] = None,
 ) -> int:
     """Načti, sluč, zapiš. Vrací počet záznamů v katalogu."""
-    items = merge(load(path), listings, retention_days)
-    save(path, items, categories, total_budget)
+    items = merge(load(path), listings, retention_days, specs_cfg)
+    save(path, items, categories, total_budget, bike)
     return len(items)

@@ -246,6 +246,8 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
             args.data, listings, all_categories, total_budget,
             retention_days=int(config.get("catalog_retention_days",
                                           catalog.DEFAULT_RETENTION_DAYS)),
+            specs_cfg=config.get("specs", {}),
+            bike=config.get("bike", {}),
         )
         log.info("docs/data.json zaktualizován (%s inzerátů v katalogu)", count)
 

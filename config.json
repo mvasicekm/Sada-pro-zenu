@@ -5,6 +5,64 @@
   "max_seen_ids": 5000,
   "catalog_retention_days": 14,
 
+  "bike": {
+    "name": "Liv Devote 2 (2024)",
+
+    "_zdroj": "Oficiální specifikace výrobce. Co je null, z ní nejde vyčíst -",
+    "_zdroj2": "musí se ověřit na kole a doplnit, jinak to stránka jen připomíná.",
+
+    "brake_mount": "flat-mount-disc",
+    "rotor_mm": 160,
+    "rear_axle": "12x142",
+    "target_brake": "disc-hydraulic",
+
+    "current_speeds": 9,
+    "current_chainrings": [48, 32],
+    "current_cogs": [11, 34],
+    "max_tire_mm": 53,
+
+    "freehub": null,
+    "bb_shell": null,
+    "fd_mount": null,
+    "frame_size": null,
+
+    "crank_length_by_size": { "XS": 165, "S": 170, "M": 172.5, "L": 172.5 },
+
+    "_fd_capacity": "Rozdíl převodníků, který přesmykač zvládne přeřadit.",
+    "fd_max_capacity": 16,
+
+    "_rd_max_cog": "Největší pastorek podle modelu přehazovačky. Uvedená je",
+    "_rd_max_cog2": "delší klec (GS/SGS); krátká klec SS zvládne jen 30 zubů.",
+    "rd_max_cog": {
+      "r7000": 34, "r7100": 36,
+      "rx400": 36, "rx810": 34, "rx812": 42,
+      "rx820": 36, "rx822": 45
+    }
+  },
+
+  "specs": {
+    "component_prefixes": ["st", "rd", "fd", "fc", "cs", "br", "bl", "sl", "cn"],
+    "brake_prefixes": ["st", "br", "bl"],
+
+    "speed_models": {
+      "10": ["rx400", "5700"],
+      "11": ["5800", "r7000", "r7020", "r7070", "rx600", "rx810", "rx812",
+             "hg700", "hg800", "m8000"],
+      "12": ["r7100", "r7101", "r7120", "r7150", "r7170",
+             "rx610", "rx615", "rx820", "rx825", "rx827"]
+    },
+
+    "brake_models": {
+      "rim": ["r7000", "5800", "5700"],
+      "disc-hydraulic": ["r7020", "r7070", "r7120", "r7150", "r7170",
+                         "rx400", "rx600", "rx610", "rx810", "rx820", "rx825"]
+    },
+
+    "front_models": {
+      "1": ["rx812"]
+    }
+  },
+
   "request": {
     "timeout_seconds": 20,
     "min_delay_seconds": 1.0,

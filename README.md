@@ -16,10 +16,12 @@ stránce s kalkulačkou sady.
 | `scraper.py` | parsery pro Bazoš a Cyklobazar, plánovač dotazů |
 | `browser.py` | headless Chromium (Playwright) pro Cyklobazar |
 | `mailer.py` | HTML/textový e-mail se štítky kategorií (`smtplib`) |
+| `specs.py` | odhad parametrů dílu z titulku (rychlosti, převodníky, brzda, rozsah) |
 | `catalog.py` | trvalý katalog nálezů pro stránku (`docs/data.json`) |
 | `main.py` | orchestrace: stáhni → zařaď → odfiltruj → pošli → ulož |
 | `seen_ids.json` | paměť odeslaných inzerátů (commituje workflow) |
 | `docs/` | statická stránka pro GitHub Pages (`index.html`, `app.js`, `style.css`) |
+| `docs/compat.js` | pravidla kompatibility dílů mezi sebou a vůči kolu |
 | `docs/data.json` | aktuální nálezy pro stránku (přepisuje monitor) |
 | `docs/state.json` | tvoje ❤️ / ✗ volby (přepisuje stránka) |
 | `.github/workflows/monitor.yml` | běh 4× denně + ruční spuštění |
@@ -88,7 +90,9 @@ Pokud chceš z Cyklobazaru úplné pokrytí, legitimní cesty jsou:
 Monitor po každém běhu zapíše všechny aktuální nálezy do `docs/data.json`
 a workflow je commitne. GitHub Pages pak publikuje složku `docs/` jako
 statickou stránku, kde jde u každého inzerátu kliknout ❤️ (chci) nebo ✗
-(nechci) a kalkulačka sečte vybrané kusy proti rozpočtu 8 000 Kč.
+(nechci) a kalkulačka sečte vybrané kusy proti rozpočtu 8 000 Kč. Z toho, co
+se ti líbí, si pak dole poskládáš konkrétní sady a stránka u každé zkontroluje
+kompatibilitu.
 
 Zapnutí: **Settings → Pages → Source: Deploy from a branch → branch `main`,
 folder `/docs`**. Žádný deploy workflow není potřeba, nová data se publikují
@@ -96,6 +100,45 @@ automaticky s commitem monitoru.
 
 Inzeráty, které se 14 dní neobjeví ve výsledcích (nejspíš prodané), katalog
 sám odklidí. Hranici mění `catalog_retention_days` v `config.json`.
+
+### Sady a kontrola kompatibility
+
+Pod kalkulačkou si můžeš založit víc **sad** (105 A, GRX A, GRX B…) a v každé
+zaškrtnout, které z nasrdíčkovaných dílů do ní patří. Sada ukáže svou cenu
+a rozdělí nálezy do tří úrovní:
+
+| Úroveň | Význam |
+| --- | --- |
+| **Nepojede to** | páky 2×11 ke 10rychlostní kazetě, hydraulické páky k lankovému třmenu, Di2 k mechanice, kazeta větší, než utáhne přehazovačka, ráfkový třmen na kotoučový rám |
+| **Asi problém** | kliky nebo přesmykač z jiné řady — často fungují napříč, ale ověř si to |
+| **Doptat se** | co z inzerátu ani ze specifikace kola nejde vyčíst |
+
+> **Zásada:** konflikt se hlásí **jen když jsou oba porovnávané údaje známé**
+> a liší se. Neznámý parametr nikdy nic nezakáže, spadne do „doptat se“.
+> Falešné „nepasuje to“ by stálo dobrou nabídku, falešné „pasuje“ jen cestu
+> na poštu.
+
+Parametry se čtou z titulku (`specs.py`) — nejdřív z tabulky kódů modelů
+v `config.json → specs`, pak z textu. Když si model a text protiřečí
+(„FC-RX810/820, 11/12 s“), výsledek je radši neznámý. U každého dílu v sadě
+je v závorce vidět, co se o něm povedlo přečíst.
+
+### Vejde se to na kolo?
+
+Profil kola je v `config.json → bike` a vychází z oficiální specifikace
+(Liv Devote 2, 2024): flat mount kotouč, kotouče 160 mm, osa 12×142,
+dnes 2×9 s převodníky 48/32 a kazetou 11–34, přesmykač zvládne rozdíl
+16 zubů, největší pastorek podle modelu přehazovačky (`rd_max_cog`).
+
+Čtyři údaje ze specifikace vyčíst nejdou — tělo náboje (ořech), středové
+složení, uchycení přesmykače a velikost rámu. Ty si doplníš přímo na stránce
+(*Vejde se to na kolo? → Doplnit, co nevím*) a uloží se se zbytkem voleb.
+Dokud je u nich „nevím“, stránka nic nezakazuje, jen to připomíná.
+
+**Nejdůležitější z nich je ořech**: kolo je z výroby 9rychlostní, a jestli má
+delší 11s tělo náboje, rozhoduje o tom, zda je 11s/12s kazeta vůbec možná,
+nebo by k ní bylo potřeba i nové zapletení. Zjisti to dřív, než cokoliv
+koupíš.
 
 ### Kde se berou tvoje volby
 
