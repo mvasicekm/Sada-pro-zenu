@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-19T12:33:48.056Z",
+  "updated_at": "2026-10-19T12:50:07.199Z",
   "items": {
     "bazos:225195009": {
       "flag": "skip",
@@ -37,5 +37,18 @@
       "flag": "skip",
       "at": "2026-10-19T12:33:46.849Z"
     }
+  },
+  "builds": {
+    "bmvf950rujv7a": {
+      "id": "bmvf950rujv7a",
+      "name": "Sada 1",
+      "uids": [],
+      "at": "2026-10-19T12:50:05.994Z",
+      "deleted": false
+    }
+  },
+  "bike": {
+    "values": {},
+    "at": ""
   }
 }
