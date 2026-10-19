@@ -1,0 +1,117 @@
+{
+  "total_budget": 8000,
+  "currency": "Kč",
+  "allow_missing_price": false,
+  "max_seen_ids": 5000,
+
+  "request": {
+    "timeout_seconds": 20,
+    "min_delay_seconds": 1.0,
+    "max_delay_seconds": 3.0,
+    "max_pages_per_query": 1,
+    "max_retries": 2
+  },
+
+  "browser": {
+    "headless": true,
+    "page_timeout_seconds": 45,
+    "challenge_timeout_seconds": 40,
+    "min_delay_seconds": 1.5,
+    "max_delay_seconds": 3.5
+  },
+
+  "sites": {
+    "bazos": {
+      "enabled": true,
+      "query_mode": "all",
+      "max_pages_per_query": 1
+    },
+    "cyklobazar": {
+      "enabled": true,
+      "query_mode": "broad",
+      "max_pages_per_query": 2
+    }
+  },
+
+  "broad_queries": ["shimano 105", "shimano grx"],
+
+  "matching": {
+    "bundle_min_matches": 3,
+    "bundle_markers": ["sada", "grupa", "groupset", "group set", "komplet", "sestava"],
+    "relevance_any": ["105", "grx"],
+    "fallback_to_query_category": true,
+    "global_exclude": [
+      "detsk", "dětsk", "odrazedl", "odrážedl", "kolobezk", "koloběžk",
+      "elektrokolo", "e-bike", "ebike", "elektro kolo",
+      "trenazer", "trenažér", "rotoped",
+      "zapletena kola", "zapletená kola", "cele kolo", "celé kolo",
+      "kompletni kolo", "kompletní kolo",
+      "helma", "prilba", "přilba", "tretry", "rukavice",
+      "hledam", "hledám", "koupim", "koupím", "poptavam", "poptávám"
+    ]
+  },
+
+  "categories": [
+    {
+      "key": "cela_sada",
+      "label": "Celá sada",
+      "max_price": 8000,
+      "is_bundle": true,
+      "queries": ["shimano 105 sada", "shimano grx sada", "grupa"],
+      "match_any": ["sada", "grupa", "groupset", "sestava", "komplet"],
+      "models": [],
+      "exclude": []
+    },
+    {
+      "key": "paky_brzdy",
+      "label": "Páky / Brzdy",
+      "max_price": 4500,
+      "queries": [
+        "shimano 105 páky", "grx páky", "dualy 105", "grx dualy",
+        "st-r7020", "st-r7000", "st-rx600", "st-rx810", "br-r7070", "br-rx400"
+      ],
+      "match_any": ["paky", "paka", "dual", "brzd", "shifter", "radici paky", "kotoucove brzdy"],
+      "models": ["st-r7020", "st-r7000", "st-rx600", "st-rx810", "br-r7070", "br-rx400", "br-r7000"],
+      "exclude": ["bowden", "gumicky", "gumičky", "krytky", "objimka", "objímka", "destick", "destičk", "kotouc", "kotouč", "adapter", "adaptér"]
+    },
+    {
+      "key": "prehazovacka",
+      "label": "Přehazovačka",
+      "max_price": 1500,
+      "queries": [
+        "shimano 105 přehazovačka", "grx přehazovačka",
+        "rd-r7000", "rd-rx810", "rd-rx812", "rd-rx400"
+      ],
+      "match_any": ["prehazovac", "menic", "derailleur"],
+      "models": ["rd-r7000", "rd-rx810", "rd-rx812", "rd-rx400"],
+      "exclude": ["kladka", "kladky", "vodici", "vodící", "patka", "lanko"]
+    },
+    {
+      "key": "presmykac",
+      "label": "Přesmykač",
+      "max_price": 700,
+      "queries": ["shimano 105 přesmykač", "grx přesmykač", "fd-r7000", "fd-rx810"],
+      "match_any": ["presmykac"],
+      "models": ["fd-r7000", "fd-rx810"],
+      "exclude": ["objimka", "objímka", "lanko"]
+    },
+    {
+      "key": "kliky",
+      "label": "Kliky",
+      "max_price": 2200,
+      "queries": ["shimano 105 kliky", "grx kliky", "fc-r7000", "fc-rx600", "fc-rx810"],
+      "match_any": ["kliky", "klika", "kliková", "klikova", "crankset"],
+      "models": ["fc-r7000", "fc-rx600", "fc-rx810", "fc-rx820"],
+      "exclude": ["stredove slozeni", "středové složení", "misky", "wattmetr", "powermeter", "prevodnik", "převodník", "klikovy klic", "klikový klíč"]
+    },
+    {
+      "key": "kazeta",
+      "label": "Kazeta",
+      "max_price": 800,
+      "queries": ["shimano 105 kazeta", "cs-r7000", "cs-hg700", "cs-m8000"],
+      "match_any": ["kazeta", "kazety", "pastorky", "cassette"],
+      "models": ["cs-r7000", "cs-hg700", "cs-m8000", "cs-hg701"],
+      "exclude": ["orech", "ořech", "retez", "řetěz", "stahovak", "stahovák", "klic", "klíč"]
+    }
+  ]
+}

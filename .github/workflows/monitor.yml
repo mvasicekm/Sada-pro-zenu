@@ -1,0 +1,69 @@
+name: Bazar monitor
+
+on:
+  schedule:
+    # Každých 15 minut. Pozor: GitHub cron se může o několik minut zpozdit.
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+# Potřebné pro commit zaktualizovaného seen_ids.json zpět do repozitáře.
+permissions:
+  contents: write
+
+concurrency:
+  group: bazar-monitor
+  cancel-in-progress: false
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('requirements.txt') }}
+
+      - name: Install Chromium for Playwright
+        run: python -m playwright install --with-deps chromium
+
+      - name: Run monitor
+        timeout-minutes: 10
+        env:
+          SMTP_SERVER: ${{ secrets.SMTP_SERVER }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
+        run: python main.py
+
+      - name: Commit seen_ids.json
+        run: |
+          if git diff --quiet -- seen_ids.json; then
+            echo "seen_ids.json se nezměnil, není co commitovat."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add seen_ids.json
+          git commit -m "chore: update seen_ids.json [skip ci]"
+          # Rebase kvůli souběžnému běhu/pushi na main.
+          git pull --rebase --autostash origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
