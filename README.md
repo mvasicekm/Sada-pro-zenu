@@ -2,9 +2,10 @@
 
 Automatický monitor bazarů **Bazos.cz** a **Cyklobazar.cz**. Hledá komponenty
 po kategoriích (páky, přehazovačka, přesmykač, kliky, kazeta, celá sada), aby
-šlo poskládat celou skupinu **do rozpočtu 8 000 Kč**. Každých 15 minut běží
-v GitHub Actions, nové nálezy v limitu posílá e-mailem a pamatuje si je
-v `seen_ids.json`.
+šlo poskládat celou skupinu **do rozpočtu 8 000 Kč**. Běží v GitHub Actions
+**4× denně** (7, 12, 17 a 21 h), nové nálezy v limitu posílá e-mailem a pamatuje
+si je v `seen_ids.json`. Všechny aktuální nálezy navíc vystavuje na webové
+stránce s kalkulačkou sady.
 
 ## Soubory
 
@@ -15,9 +16,13 @@ v `seen_ids.json`.
 | `scraper.py` | parsery pro Bazoš a Cyklobazar, plánovač dotazů |
 | `browser.py` | headless Chromium (Playwright) pro Cyklobazar |
 | `mailer.py` | HTML/textový e-mail se štítky kategorií (`smtplib`) |
+| `catalog.py` | trvalý katalog nálezů pro stránku (`docs/data.json`) |
 | `main.py` | orchestrace: stáhni → zařaď → odfiltruj → pošli → ulož |
 | `seen_ids.json` | paměť odeslaných inzerátů (commituje workflow) |
-| `.github/workflows/monitor.yml` | běh každých 15 min + ruční spuštění |
+| `docs/` | statická stránka pro GitHub Pages (`index.html`, `app.js`, `style.css`) |
+| `docs/data.json` | aktuální nálezy pro stránku (přepisuje monitor) |
+| `docs/state.json` | tvoje ❤️ / ✗ volby (přepisuje stránka) |
+| `.github/workflows/monitor.yml` | běh 4× denně + ruční spuštění |
 
 ## Jak funguje zařazení do kategorií
 
@@ -78,6 +83,44 @@ Pokud chceš z Cyklobazaru úplné pokrytí, legitimní cesty jsou:
 - zeptat se provozovatele na přístup k API nebo na povolení pro svého bota,
 - nebo web vypnout přes `"cyklobazar": {"enabled": false}`.
 
+## Stránka s kalkulačkou
+
+Monitor po každém běhu zapíše všechny aktuální nálezy do `docs/data.json`
+a workflow je commitne. GitHub Pages pak publikuje složku `docs/` jako
+statickou stránku, kde jde u každého inzerátu kliknout ❤️ (chci) nebo ✗
+(nechci) a kalkulačka sečte vybrané kusy proti rozpočtu 8 000 Kč.
+
+Zapnutí: **Settings → Pages → Source: Deploy from a branch → branch `main`,
+folder `/docs`**. Žádný deploy workflow není potřeba, nová data se publikují
+automaticky s commitem monitoru.
+
+Inzeráty, které se 14 dní neobjeví ve výsledcích (nejspíš prodané), katalog
+sám odklidí. Hranici mění `catalog_retention_days` v `config.json`.
+
+### Kde se berou tvoje volby
+
+Kliknutí se **vždy** okamžitě uloží do `localStorage` prohlížeče. Když navíc
+do *Nastavení* na stránce vložíš GitHub token, zapíší se i do
+`docs/state.json` v repozitáři, takže je uvidíš i na jiném zařízení. Při
+načtení se obě sady slučují a u každé položky vyhrává novější kliknutí.
+
+Token vytvoříš takto:
+
+1. https://github.com/settings/personal-access-tokens/new
+2. *Repository access* → **Only select repositories** → `Sada-pro-zenu`
+3. *Permissions → Repository permissions → Contents* → **Read and write**
+4. Vygeneruj, zkopíruj a vlož na stránce do *Nastavení → Uložit a otestovat*
+
+Token zůstává jen v tom prohlížeči a posílá se výhradně na `api.github.com`.
+Dej mu krátkou expiraci a omez ho na tohle jedno repo — pak je nejhorší možný
+následek jeho vyzrazení přepsání souborů v tomhle repozitáři. Tlačítko
+*Zapomenout token* ho z prohlížeče smaže.
+
+Protože titulky inzerátů píšou cizí lidé, vykresluje stránka veškerý text
+přes `textContent` a odkazy propouští jen po kontrole, že vedou přes `https`
+na `bazos.cz` nebo `cyklobazar.cz`. Bez toho by titulek inzerátu mohl
+propašovat skript a token ukradnout.
+
 ## GitHub Secrets
 
 **Settings → Secrets and variables → Actions → New repository secret**:
@@ -128,7 +171,14 @@ python main.py -v
 `.env` je v `.gitignore`, do repozitáře se nedostane.
 
 Přepínače: `--dry-run`, `--no-mail`, `--only KLIC` (lze opakovat),
-`--site bazos|cyklobazar`, `--config`, `--seen`, `-v`.
+`--site bazos|cyklobazar`, `--config`, `--seen`, `--data`, `-v`.
+
+Stránku si lokálně prohlédneš přes `python -m http.server -d docs 8000`
+a http://localhost:8000 (otevřít `index.html` přímo ze disku nestačí,
+prohlížeč by zakázal načtení `data.json`).
+
+`docs/data.json` se plní jen při **úplném** běhu — s `--dry-run`, `--only`
+nebo `--site` se nepřepisuje, aby se katalog nezúžil na část nálezů.
 
 ## Konfigurace
 
@@ -170,5 +220,9 @@ Přepínače: `--dry-run`, `--no-mail`, `--only KLIC` (lze opakovat),
 - Externí reklamní bannery ve výsledcích se zahazují (odkaz mimo doménu).
 - E-mail se odesílá jen když přibyl aspoň jeden nový inzerát. Když odeslání
   selže, `seen_ids.json` se **neuloží**, aby se nález neztratil.
+- Každý inzerát se tedy pošle právě jednou; stejné komponenty se v dalších
+  e-mailech neopakují. Na stránce zůstávají, dokud se neprodají.
 - Celý běh trvá ~1,5 minuty; krok ve workflow má limit 10 minut.
-- GitHub cron se u vytížených runnerů může o pár minut zpozdit.
+- GitHub cron se u vytížených runnerů může o pár minut zpozdit. Časy jsou
+  v cronu uvedené v UTC ve dvou sadách (letní a zimní čas), takže se mimo
+  sezónu můžou o hodinu posunout.

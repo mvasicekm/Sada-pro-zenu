@@ -18,6 +18,7 @@ from typing import Dict, List, Optional, Sequence
 
 from dotenv import load_dotenv
 
+import catalog
 import categories as categories_module
 import mailer
 import scraper
@@ -25,6 +26,7 @@ import scraper
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DEFAULT_CONFIG = os.path.join(BASE_DIR, "config.json")
 DEFAULT_SEEN = os.path.join(BASE_DIR, "seen_ids.json")
+DEFAULT_DATA = os.path.join(BASE_DIR, "docs", "data.json")
 
 log = logging.getLogger("monitor")
 
@@ -142,6 +144,8 @@ def parse_args(argv: Optional[Sequence[str]] = None) -> argparse.Namespace:
                         help="cesta ke config.json")
     parser.add_argument("--seen", default=DEFAULT_SEEN,
                         help="cesta k seen_ids.json")
+    parser.add_argument("--data", default=DEFAULT_DATA,
+                        help="cesta k docs/data.json pro webovou stránku")
     parser.add_argument("--dry-run", action="store_true",
                         help="nic neposílat a neukládat, jen vypsat nálezy")
     parser.add_argument("--no-mail", action="store_true",
@@ -234,6 +238,16 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     if not listings:
         log.warning("Žádné inzeráty - weby mohly změnit HTML nebo blokují requesty")
         return 0
+
+    # Katalog pro stránku se plní jen z úplného běhu. Při --only / --site
+    # chybí nálezy ostatních kategorií a webů, takže by se katalog zúžil.
+    if not args.dry_run and not args.only and not args.site:
+        count = catalog.update(
+            args.data, listings, all_categories, total_budget,
+            retention_days=int(config.get("catalog_retention_days",
+                                          catalog.DEFAULT_RETENTION_DAYS)),
+        )
+        log.info("docs/data.json zaktualizován (%s inzerátů v katalogu)", count)
 
     seen = load_seen(args.seen)
     fresh = select_new(

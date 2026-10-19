@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Sada Shimano 105 / GRX</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar__title">
+    <h1>Sada Shimano 105 / GRX</h1>
+    <p id="meta" class="muted">Načítám&hellip;</p>
+  </div>
+  <button id="settings-toggle" class="btn btn--ghost" type="button">Nastavení</button>
+</header>
+
+<section id="settings" class="panel panel--settings" hidden>
+  <h2>Synchronizace mezi zařízeními</h2>
+  <p class="muted">
+    Bez tokenu se tvoje volby ukládají jen do tohoto prohlížeče. S tokenem se
+    navíc zapisují do <code>docs/state.json</code> v repozitáři, takže je uvidíš
+    i na jiném zařízení. Token zůstává v tomhle prohlížeči, nikam se neposílá
+    kromě GitHub API.
+  </p>
+  <label class="field">
+    <span>Fine-grained GitHub token (Contents: Read and write)</span>
+    <input id="token" type="password" autocomplete="off" spellcheck="false"
+           placeholder="github_pat_&hellip;">
+  </label>
+  <div class="row">
+    <button id="token-save" class="btn" type="button">Uložit a otestovat</button>
+    <button id="token-clear" class="btn btn--ghost" type="button">Zapomenout token</button>
+  </div>
+  <p id="token-status" class="muted"></p>
+</section>
+
+<section class="panel panel--calc">
+  <div class="calc__head">
+    <h2>Vybraná sada</h2>
+    <div class="calc__total">
+      <strong id="calc-sum">0 Kč</strong>
+      <span class="muted">z <span id="calc-budget">8 000 Kč</span></span>
+    </div>
+  </div>
+  <div class="bar"><div id="calc-bar" class="bar__fill"></div></div>
+  <p id="calc-note" class="muted"></p>
+  <ul id="calc-list" class="calc__list"></ul>
+</section>
+
+<nav class="controls">
+  <label class="check">
+    <input id="show-rejected" type="checkbox">
+    <span>Zobrazit zamítnuté</span>
+  </label>
+  <label class="check">
+    <input id="only-within" type="checkbox" checked>
+    <span>Jen do limitu kategorie</span>
+  </label>
+  <span id="counts" class="muted"></span>
+</nav>
+
+<main id="list"></main>
+
+<footer class="muted">
+  Data z Bazoš.cz a Cyklobazar.cz, obnovuje se 4&times; denně.
+  Prodané inzeráty ze seznamu samy zmizí.
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

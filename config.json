@@ -3,6 +3,7 @@
   "currency": "Kč",
   "allow_missing_price": false,
   "max_seen_ids": 5000,
+  "catalog_retention_days": 14,
 
   "request": {
     "timeout_seconds": 20,
