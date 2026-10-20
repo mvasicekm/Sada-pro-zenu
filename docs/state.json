@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-20T10:31:50.280Z",
+  "updated_at": "2026-10-20T10:31:54.575Z",
   "items": {
     "bazos:225195009": {
       "flag": "skip",
@@ -55,8 +55,9 @@
     "values": {
       "freehub": "9",
       "bb_shell": "bsa",
-      "fd_mount": "braze-on"
+      "fd_mount": "braze-on",
+      "frame_size": "S"
     },
-    "at": "2026-10-20T10:31:49.078Z"
+    "at": "2026-10-20T10:31:53.371Z"
   }
 }
