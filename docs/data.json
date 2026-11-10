@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-10T00:00:56+00:00",
+  "generated_at": "2026-11-10T14:30:17+00:00",
   "total_budget": 8000,
   "bike": {
     "name": "Liv Devote 2 (2024)",
@@ -86,7 +86,7 @@
       "category_label": "Celá sada",
       "category_max_price": 8000,
       "first_seen": "2026-11-09T15:29:34+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": null,
         "front": null,
@@ -134,7 +134,7 @@
       "category_label": "Celá sada",
       "category_max_price": 8000,
       "first_seen": "2026-11-01T12:50:37+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": null,
         "front": null,
@@ -158,7 +158,7 @@
       "category_label": "Celá sada",
       "category_max_price": 8000,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": 10,
         "front": 2,
@@ -182,7 +182,7 @@
       "category_label": "Celá sada",
       "category_max_price": 8000,
       "first_seen": "2026-10-19T20:27:59+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": null,
         "front": null,
@@ -206,7 +206,7 @@
       "category_label": "Celá sada",
       "category_max_price": 8000,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": null,
         "front": null,
@@ -230,7 +230,7 @@
       "category_label": "Celá sada",
       "category_max_price": 8000,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": null,
         "front": null,
@@ -254,7 +254,7 @@
       "category_label": "Celá sada",
       "category_max_price": 8000,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": null,
         "front": null,
@@ -326,7 +326,7 @@
       "category_label": "Celá sada",
       "category_max_price": 8000,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": 11,
         "front": null,
@@ -374,7 +374,7 @@
       "category_label": "Celá sada",
       "category_max_price": 8000,
       "first_seen": "2026-10-23T21:56:33+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": null,
         "front": null,
@@ -398,7 +398,7 @@
       "category_label": "Celá sada",
       "category_max_price": 8000,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": null,
         "front": null,
@@ -422,7 +422,7 @@
       "category_label": "Celá sada",
       "category_max_price": 8000,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": null,
         "front": null,
@@ -461,6 +461,30 @@
       }
     },
     {
+      "uid": "bazos:226235721",
+      "site": "bazos",
+      "title": "MRX Gravel Carbon - sada Shimano GRX nové",
+      "url": "https://sport.bazos.cz/inzerat/226235721/mrx-gravel-carbon-sada-shimano-grx-nove.php",
+      "price": 37000,
+      "category_key": "cela_sada",
+      "category_label": "Celá sada",
+      "category_max_price": 8000,
+      "first_seen": "2026-11-10T14:30:17+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
+      "specs": {
+        "speeds": null,
+        "front": null,
+        "brake": null,
+        "part": null,
+        "model": null,
+        "electronic": null,
+        "cog_min": null,
+        "cog_max": null,
+        "chainring_big": null,
+        "chainring_small": null
+      }
+    },
+    {
       "uid": "bazos:224861194",
       "site": "bazos",
       "title": "Allroad kolo Ridley Grifn A GRX400 – raw",
@@ -470,7 +494,7 @@
       "category_label": "Celá sada",
       "category_max_price": 8000,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": 10,
         "front": null,
@@ -494,7 +518,7 @@
       "category_label": "Celá sada",
       "category_max_price": 8000,
       "first_seen": "2026-10-30T19:54:55+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": null,
         "front": null,
@@ -518,7 +542,7 @@
       "category_label": "Celá sada",
       "category_max_price": 8000,
       "first_seen": "2026-10-22T09:56:53+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": null,
         "front": null,
@@ -566,7 +590,7 @@
       "category_label": "Celá sada",
       "category_max_price": 8000,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": 11,
         "front": 2,
@@ -590,7 +614,7 @@
       "category_label": "Celá sada",
       "category_max_price": 8000,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": 11,
         "front": 2,
@@ -638,7 +662,7 @@
       "category_label": "Celá sada",
       "category_max_price": 8000,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": null,
         "front": null,
@@ -662,7 +686,7 @@
       "category_label": "Celá sada",
       "category_max_price": 8000,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": null,
         "front": null,
@@ -758,7 +782,7 @@
       "category_label": "Kazeta",
       "category_max_price": 800,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": 11,
         "front": null,
@@ -782,7 +806,7 @@
       "category_label": "Kazeta",
       "category_max_price": 800,
       "first_seen": "2026-10-19T20:27:59+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": 11,
         "front": null,
@@ -806,7 +830,7 @@
       "category_label": "Kazeta",
       "category_max_price": 800,
       "first_seen": "2026-10-21T09:55:24+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": 11,
         "front": 2,
@@ -854,7 +878,7 @@
       "category_label": "Kazeta",
       "category_max_price": 800,
       "first_seen": "2026-10-21T09:55:24+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": 11,
         "front": null,
@@ -878,7 +902,7 @@
       "category_label": "Kazeta",
       "category_max_price": 800,
       "first_seen": "2026-11-05T14:19:58+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": 11,
         "front": null,
@@ -926,7 +950,7 @@
       "category_label": "Kazeta",
       "category_max_price": 800,
       "first_seen": "2026-10-19T20:27:59+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": 11,
         "front": null,
@@ -950,7 +974,7 @@
       "category_label": "Kazeta",
       "category_max_price": 800,
       "first_seen": "2026-10-20T09:53:04+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": 11,
         "front": null,
@@ -974,7 +998,7 @@
       "category_label": "Kazeta",
       "category_max_price": 800,
       "first_seen": "2026-11-01T12:50:37+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": 11,
         "front": 2,
@@ -1046,7 +1070,7 @@
       "category_label": "Kliky",
       "category_max_price": 2200,
       "first_seen": "2026-11-09T15:29:34+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": null,
         "front": null,
@@ -1118,7 +1142,7 @@
       "category_label": "Kliky",
       "category_max_price": 2200,
       "first_seen": "2026-10-25T14:12:11+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": null,
         "front": null,
@@ -1142,7 +1166,7 @@
       "category_label": "Kliky",
       "category_max_price": 2200,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": 12,
         "front": null,
@@ -1166,7 +1190,7 @@
       "category_label": "Kliky",
       "category_max_price": 2200,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": 12,
         "front": null,
@@ -1190,7 +1214,7 @@
       "category_label": "Kliky",
       "category_max_price": 2200,
       "first_seen": "2026-10-19T20:27:59+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": null,
         "front": null,
@@ -1286,7 +1310,7 @@
       "category_label": "Kliky",
       "category_max_price": 2200,
       "first_seen": "2026-11-08T20:16:49+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": 11,
         "front": null,
@@ -1310,7 +1334,7 @@
       "category_label": "Kliky",
       "category_max_price": 2200,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": 12,
         "front": 2,
@@ -1358,7 +1382,7 @@
       "category_label": "Kliky",
       "category_max_price": 2200,
       "first_seen": "2026-10-25T14:12:11+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": 12,
         "front": 1,
@@ -1382,7 +1406,7 @@
       "category_label": "Kliky",
       "category_max_price": 2200,
       "first_seen": "2026-10-21T09:55:24+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": 11,
         "front": 1,
@@ -1406,7 +1430,7 @@
       "category_label": "Kliky",
       "category_max_price": 2200,
       "first_seen": "2026-10-19T20:27:59+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": 11,
         "front": null,
@@ -1454,7 +1478,7 @@
       "category_label": "Kliky",
       "category_max_price": 2200,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": null,
         "front": null,
@@ -1478,7 +1502,7 @@
       "category_label": "Kliky",
       "category_max_price": 2200,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": null,
         "front": null,
@@ -1502,7 +1526,7 @@
       "category_label": "Kliky",
       "category_max_price": 2200,
       "first_seen": "2026-11-10T00:00:56+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": 12,
         "front": null,
@@ -1622,7 +1646,7 @@
       "category_label": "Kliky",
       "category_max_price": 2200,
       "first_seen": "2026-10-29T20:08:12+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": null,
         "front": 1,
@@ -1646,7 +1670,7 @@
       "category_label": "Kliky",
       "category_max_price": 2200,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": 12,
         "front": 1,
@@ -1694,7 +1718,7 @@
       "category_label": "Kliky",
       "category_max_price": 2200,
       "first_seen": "2026-10-27T19:56:23+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": 11,
         "front": 1,
@@ -1766,7 +1790,7 @@
       "category_label": "Kliky",
       "category_max_price": 2200,
       "first_seen": "2026-11-04T13:56:35+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": null,
         "front": null,
@@ -1862,7 +1886,7 @@
       "category_label": "Páky / Brzdy",
       "category_max_price": 4500,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": null,
         "front": null,
@@ -1886,7 +1910,7 @@
       "category_label": "Páky / Brzdy",
       "category_max_price": 4500,
       "first_seen": "2026-10-27T10:17:37+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": 9,
         "front": 2,
@@ -1910,7 +1934,7 @@
       "category_label": "Páky / Brzdy",
       "category_max_price": 4500,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": 11,
         "front": 2,
@@ -1934,7 +1958,7 @@
       "category_label": "Páky / Brzdy",
       "category_max_price": 4500,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": 12,
         "front": 1,
@@ -1958,7 +1982,7 @@
       "category_label": "Páky / Brzdy",
       "category_max_price": 4500,
       "first_seen": "2026-11-01T12:50:37+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": 12,
         "front": 2,
@@ -1982,7 +2006,7 @@
       "category_label": "Páky / Brzdy",
       "category_max_price": 4500,
       "first_seen": "2026-10-19T20:27:59+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": 12,
         "front": 1,
@@ -2006,7 +2030,7 @@
       "category_label": "Páky / Brzdy",
       "category_max_price": 4500,
       "first_seen": "2026-10-19T20:27:59+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": 12,
         "front": 1,
@@ -2030,7 +2054,7 @@
       "category_label": "Páky / Brzdy",
       "category_max_price": 4500,
       "first_seen": "2026-11-06T21:31:25+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": 12,
         "front": 2,
@@ -2054,7 +2078,7 @@
       "category_label": "Páky / Brzdy",
       "category_max_price": 4500,
       "first_seen": "2026-11-01T12:50:37+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": null,
         "front": null,
@@ -2102,7 +2126,7 @@
       "category_label": "Páky / Brzdy",
       "category_max_price": 4500,
       "first_seen": "2026-11-09T15:29:34+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": 12,
         "front": 1,
@@ -2126,7 +2150,7 @@
       "category_label": "Páky / Brzdy",
       "category_max_price": 4500,
       "first_seen": "2026-10-23T09:49:20+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": 11,
         "front": 2,
@@ -2174,7 +2198,7 @@
       "category_label": "Páky / Brzdy",
       "category_max_price": 4500,
       "first_seen": "2026-11-04T21:46:07+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": null,
         "front": null,
@@ -2198,7 +2222,7 @@
       "category_label": "Páky / Brzdy",
       "category_max_price": 4500,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": null,
         "front": null,
@@ -2222,7 +2246,7 @@
       "category_label": "Páky / Brzdy",
       "category_max_price": 4500,
       "first_seen": "2026-11-01T12:50:37+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": null,
         "front": null,
@@ -2246,7 +2270,7 @@
       "category_label": "Páky / Brzdy",
       "category_max_price": 4500,
       "first_seen": "2026-10-26T10:51:33+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": null,
         "front": null,
@@ -2270,7 +2294,7 @@
       "category_label": "Páky / Brzdy",
       "category_max_price": 4500,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": null,
         "front": null,
@@ -2294,7 +2318,7 @@
       "category_label": "Páky / Brzdy",
       "category_max_price": 4500,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": null,
         "front": null,
@@ -2318,7 +2342,7 @@
       "category_label": "Páky / Brzdy",
       "category_max_price": 4500,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": null,
         "front": null,
@@ -2366,7 +2390,7 @@
       "category_label": "Přehazovačka",
       "category_max_price": 1500,
       "first_seen": "2026-10-29T20:08:12+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": 11,
         "front": null,
@@ -2390,7 +2414,7 @@
       "category_label": "Přehazovačka",
       "category_max_price": 1500,
       "first_seen": "2026-10-19T20:27:59+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": 10,
         "front": null,
@@ -2414,7 +2438,7 @@
       "category_label": "Přehazovačka",
       "category_max_price": 1500,
       "first_seen": "2026-10-19T20:27:59+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": 11,
         "front": null,
@@ -2486,7 +2510,7 @@
       "category_label": "Přehazovačka",
       "category_max_price": 1500,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": null,
         "front": null,
@@ -2510,7 +2534,7 @@
       "category_label": "Přehazovačka",
       "category_max_price": 1500,
       "first_seen": "2026-11-09T15:29:34+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": 12,
         "front": 1,
@@ -2534,7 +2558,7 @@
       "category_label": "Přehazovačka",
       "category_max_price": 1500,
       "first_seen": "2026-10-19T20:27:59+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": 12,
         "front": 1,
@@ -2582,7 +2606,7 @@
       "category_label": "Přehazovačka",
       "category_max_price": 1500,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": 10,
         "front": 2,
@@ -2606,7 +2630,7 @@
       "category_label": "Přehazovačka",
       "category_max_price": 1500,
       "first_seen": "2026-10-28T11:07:33+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": null,
         "front": null,
@@ -2654,7 +2678,7 @@
       "category_label": "Přehazovačka",
       "category_max_price": 1500,
       "first_seen": "2026-10-22T09:56:53+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": 12,
         "front": 2,
@@ -2678,7 +2702,7 @@
       "category_label": "Přesmykač",
       "category_max_price": 700,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": 11,
         "front": 2,
@@ -2726,7 +2750,7 @@
       "category_label": "Přesmykač",
       "category_max_price": 700,
       "first_seen": "2026-11-01T12:50:37+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": 10,
         "front": 2,
@@ -2750,7 +2774,7 @@
       "category_label": "Přesmykač",
       "category_max_price": 700,
       "first_seen": "2026-11-06T21:31:25+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": 12,
         "front": 2,
@@ -2822,7 +2846,7 @@
       "category_label": "Přesmykač",
       "category_max_price": 700,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": 12,
         "front": 2,
@@ -2846,7 +2870,7 @@
       "category_label": "Přesmykač",
       "category_max_price": 700,
       "first_seen": "2026-10-19T11:54:10+00:00",
-      "last_seen": "2026-11-10T00:00:56+00:00",
+      "last_seen": "2026-11-10T14:30:17+00:00",
       "specs": {
         "speeds": 11,
         "front": 2,
